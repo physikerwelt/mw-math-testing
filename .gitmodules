@@ -1,0 +1,9 @@
+[submodule "mediawiki"]
+	path = mediawiki
+	url = https://gerrit.wikimedia.org/r/mediawiki/core.git
+[submodule "Vector"]
+	path = Vector
+	url = https://gerrit.wikimedia.org/r/mediawiki/skins/Vector
+[submodule "Math"]
+	path = Math
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Math
