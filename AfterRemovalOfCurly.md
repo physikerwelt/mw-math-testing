@@ -1,3 +1,6 @@
+
+This shows the results after the removal of curly 493488f3176577544dfdc00ce4c73f4aaf0a7b77
+```
 > phpunit './extensions/Math/tests/phpunit/'
 Using PHP 8.1.20
 Running with MediaWiki settings because there might be integration tests
