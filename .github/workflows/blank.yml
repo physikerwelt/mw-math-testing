@@ -27,6 +27,7 @@ jobs:
         uses: green-coding-solutions/eco-ci-energy-estimation@v4.6 # use hash or @vX here (See note below)
         with:
           task: start-measurement
+          calculate-co2: false
       - uses: actions/checkout@v4
         with:
           submodules: true
