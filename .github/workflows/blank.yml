@@ -35,7 +35,7 @@ jobs:
       - name: Run the test
         run: ./run.sh && echo "success!"
       - name: Tests measurement
-        uses: green-coding-solutions/eco-ci-energy-estimation@v4.6 # use hash or @vX here (See note below)
+        uses: green-coding-solutions/eco-ci-energy-estimation@v4.7 # use hash or @vX here (See note below)
         with:
           task: get-measurement
           label: 'tests'
