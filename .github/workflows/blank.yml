@@ -40,7 +40,8 @@ jobs:
           task: get-measurement
           label: 'tests'
         # continue-on-error: true # recommended setting for production. See notes below.
-
+      - name: Prepare additional tests
+        run: ./prepare-more-tests.sh && echo "success!"
       - name: Show Energy Results
         uses: green-coding-solutions/eco-ci-energy-estimation@v4.6 # use hash or @vX here (See note below)
         with:

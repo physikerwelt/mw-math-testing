@@ -7,3 +7,6 @@
 [submodule "Math"]
 	path = Math
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Math
+[submodule "MathSearch"]
+	path = MathSearch
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/MathSearch
