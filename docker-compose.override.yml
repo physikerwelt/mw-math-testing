@@ -1,0 +1,18 @@
+services:
+  mariadb:
+    image: 'bitnami/mariadb:latest'
+    volumes:
+      - mariadbdata:/bitnami/mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=root_password
+      - MARIADB_USER=my_user
+      - MARIADB_PASSWORD=my_password
+      - MARIADB_DATABASE=my_database
+    ports:
+      - 3306:3306
+  mediawiki:
+    volumes:
+      - ../install.sh:/docker/install.sh:cached
+volumes:
+  mariadbdata:
+    driver: local

@@ -6,6 +6,7 @@ echo "MW_DOCKER_UID=$(id -u)
 MW_DOCKER_GID=$(id -g)" >> mediawiki/.env
 cp -r $PWD/Vector $PWD/mediawiki/skins/Vector
 cp -r $PWD/Math $PWD/mediawiki/extensions/Math
+cp $PWD/docker-compose.override.yml $PWD/mediawiki/docker-compose.override.yml
 cd mediawiki
 docker compose up -d
 docker compose exec mediawiki composer update
