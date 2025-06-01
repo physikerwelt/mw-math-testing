@@ -9,8 +9,6 @@ set -euxo pipefail
 php maintenance/install.php \
   --server "$MW_SERVER" \
   --scriptpath="$MW_SCRIPT_PATH" \
-  --dbtype "$MW_DBTYPE" \
-  --dbpath "$MW_DBPATH" \
   --dbname=my_database \
   --dbuser=my_user \
   --dbpass=my_password \
