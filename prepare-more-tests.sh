@@ -1,7 +1,11 @@
+#!/bin/bash
+
+set -euxo pipefail
+
 FILEPATH=/tmp/wmf-texvc-inputs.json
 URL=https://zenodo.org/records/15162182/files/wmf_texvc_inputs.json
 cp -r $PWD/MathSearch $PWD/mediawiki/extensions/MathSearch
-cd mediawiki
+cd mediawiki || exit 1
 docker compose exec mediawiki composer update
 docker compose exec mediawiki /bin/bash /docker/install.sh
 echo "wfLoadExtension( 'MathSearch' );" >> LocalSettings.php
