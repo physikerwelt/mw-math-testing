@@ -16,3 +16,4 @@ wfLoadExtension( 'Math' );" >> LocalSettings.php
 docker compose exec mediawiki php maintenance/run.php update.php --quick
 docker compose exec mediawiki /bin/bash -c 'cd /var/www/html/w/extensions/Math/maintenance && ./downloadMoreTexVCtests.sh'
 docker compose exec mediawiki /bin/bash -c 'export COMPOSER_PROCESS_TIMEOUT=3600 && composer phpunit -- ./extensions/Math/tests/phpunit/unit'
+docker compose exec mediawiki /bin/bash -c 'export COMPOSER_PROCESS_TIMEOUT=3600 && composer phpunit -- ./extensions/Math/tests/phpunit/integration'
