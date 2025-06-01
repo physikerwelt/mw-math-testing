@@ -39,7 +39,7 @@ jobs:
         with:
           task: get-measurement
           label: 'tests'
-        # continue-on-error: true # recommended setting for production. See notes below.
+          continue-on-error: true # recommended setting for production. See notes below.
       - name: Prepare additional tests
         run: ./prepare-more-tests.sh && echo "success!"
       - name: Tests prepare more
@@ -47,7 +47,7 @@ jobs:
         with:
           task: get-measurement
           label: 'prepare-more'
-        # continue-on-error: true # recommended setting for production. See notes below.
+          continue-on-error: true # recommended setting for production. See notes below.
       - name: Run integration tests
         run: ./integration.sh && echo "success!"
       - name: Measure integration
@@ -55,7 +55,7 @@ jobs:
         with:
           task: get-measurement
           label: 'integration'
-        # continue-on-error: true # recommended setting for production. See notes below.
+          continue-on-error: true # recommended setting for production. See notes below.
       - name: Run performance tests
         run: ./performance.sh && echo "success!"
       - name: Measure performance
@@ -63,7 +63,7 @@ jobs:
         with:
           task: get-measurement
           label: 'performance'
-        # continue-on-error: true # recommended setting for production. See notes below.
+          continue-on-error: true # recommended setting for production. See notes below.
       - name: Show Energy Results
         uses: green-coding-solutions/eco-ci-energy-estimation@v4.6 # use hash or @vX here (See note below)
         with:
