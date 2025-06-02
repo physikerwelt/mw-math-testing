@@ -24,7 +24,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Start Measurement
-        uses: green-coding-solutions/eco-ci-energy-estimation@v4.6 # use hash or @vX here (See note below)
+        uses: green-coding-solutions/eco-ci-energy-estimation@v4.7 # use hash or @vX here (See note below)
         with:
           task: start-measurement
           calculate-co2: false
@@ -65,6 +65,6 @@ jobs:
           label: 'performance'
         continue-on-error: true # recommended setting for production. See notes below.
       - name: Show Energy Results
-        uses: green-coding-solutions/eco-ci-energy-estimation@v4.6 # use hash or @vX here (See note below)
+        uses: green-coding-solutions/eco-ci-energy-estimation@v4.7 # use hash or @vX here (See note below)
         with:
           task: display-results
