@@ -11,6 +11,7 @@ echo "wfLoadExtension( 'MathSearch' );
 \$wgMathDebug = true;" >> LocalSettings.php
 docker compose exec mediawiki php maintenance/run.php update.php --quick
 docker compose exec mediawiki /bin/bash -c 'export COMPOSER_PROCESS_TIMEOUT=3600 && composer phpunit -- /var/www/html/w/extensions/MathSearch/tests/phpunit/unit'
-docker compose exec mariadb /bin/bash -c "curl $URL -o $FILEPATH"
-docker compose exec mariadb /bin/bash -c 'mysql -u root -proot_password -e "SET GLOBAL max_allowed_packet=1073741824;"'
-docker compose exec mariadb /bin/bash -c 'mysql -u root -proot_password < /import.sql'
+curl $URL -o $FILEPATH
+docker compose cp $FILEPATH  mariadb:$FILEPATH
+docker compose exec mariadb /bin/bash -c 'mariadb -u root -proot_password -e "SET GLOBAL max_allowed_packet=1073741824;"'
+docker compose exec mariadb /bin/bash -c 'mariadb -u root -proot_password < /import.sql'
