@@ -13,3 +13,8 @@ Current energy metrics of the performance test (See https://metrics.green-coding
 |17826057241 |performance            |2025-09-18 13:20 UTC+2 |15,468.50 J |EPYC_7763 |91%           |1,971.72 s |18db24d           |
 
 
+## contribute
+
+```
+git submodule update --remote --merge
+```
