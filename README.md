@@ -5,3 +5,9 @@ Repository to store config for testing MediaWikis Math extension using docker lo
 
 
 Follow https://www.mediawiki.org/wiki/MediaWiki-Docker/Extension/Math
+
+## contribute
+
+```
+git submodule update --remote --merge
+```
