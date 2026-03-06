@@ -1,0 +1,54 @@
+name: Update Submodules
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-submodules:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update submodules
+        run: git submodule update --remote --merge
+
+      - name: Commit and push changes
+        id: push
+        run: |
+          BRANCH="update-submodules-${{ github.run_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add .
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Update submodules to latest remote HEAD"
+            git push origin "$BRANCH"
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+            echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create Pull Request
+        if: steps.push.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_BODY: |
+            This PR updates all git submodules to their latest remote HEAD.
+
+            Triggered by the [Update Submodules](https://github.com/${{ github.repository }}/actions/workflows/update-submodules.yml) workflow.
+        run: |
+          gh pr create \
+            --base main \
+            --head "${{ steps.push.outputs.branch }}" \
+            --title "Update submodules to latest remote HEAD" \
+            --body "$PR_BODY"

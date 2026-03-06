@@ -18,3 +18,7 @@ Current energy metrics of the performance test (See [green-metrics-results](http
 ```
 git submodule update --remote --merge
 ```
+
+You can also trigger a submodule update via GitHub Actions, which will open a pull request with the changes:
+
+[![Update Submodules](https://github.com/physikerwelt/mw-math-testing/actions/workflows/update-submodules.yml/badge.svg)](https://github.com/physikerwelt/mw-math-testing/actions/workflows/update-submodules.yml)
