@@ -1,0 +1,35 @@
+name: Update Submodules
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-submodules:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update submodules
+        run: git submodule update --remote --merge
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update submodules to latest remote HEAD"
+          title: "Update submodules to latest remote HEAD"
+          body: |
+            This PR updates all git submodules to their latest remote HEAD.
+
+            Triggered by the [Update Submodules](https://github.com/${{ github.repository }}/actions/workflows/update-submodules.yml) workflow.
+          branch: update-submodules-${{ github.run_id }}
+          delete-branch: true
+          base: main
