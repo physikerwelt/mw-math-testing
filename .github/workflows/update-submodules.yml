@@ -6,6 +6,9 @@ on:
 jobs:
   update-submodules:
     runs-on: ubuntu-latest
+    # Gerrit rejects cloud runners that send the default git user agent (T441387)
+    env:
+      GIT_HTTP_USER_AGENT: "mw-math-testing/1.0 (https://github.com/physikerwelt/mw-math-testing; wiki@physikerwelt.de)"
     permissions:
       contents: write
       pull-requests: write
@@ -14,8 +17,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
-          submodules: true
           fetch-depth: 0
+
+      - name: Check out the submodules
+        # actions/checkout replaces GIT_HTTP_USER_AGENT with its own, so git fetches the submodules
+        run: git submodule update --init
       
       - name: Update submodules
         run: git submodule update --remote --merge

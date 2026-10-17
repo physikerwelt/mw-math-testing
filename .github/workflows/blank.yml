@@ -19,6 +19,9 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    # Gerrit rejects cloud runners that send the default git user agent (T441387)
+    env:
+      GIT_HTTP_USER_AGENT: "mw-math-testing/1.0 (https://github.com/physikerwelt/mw-math-testing; wiki@physikerwelt.de)"
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -29,8 +32,9 @@ jobs:
           task: start-measurement
           calculate-co2: false
       - uses: actions/checkout@v4
-        with:
-          submodules: true
+      - name: Check out the submodules
+        # actions/checkout replaces GIT_HTTP_USER_AGENT with its own, so git fetches the submodules
+        run: git submodule update --init --depth=1
       # Runs a single command using the runners shell
       - name: Run the test
         run: ./run.sh && echo "success!"
